@@ -12,6 +12,11 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  txt: React.PropTypes.string,
+  cat: React.PropTypes.number.isRequired
+}
+
 ReactDOM.render(
   <App txt="this is props text"/>,
   document.getElementById('app')
