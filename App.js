@@ -17,8 +17,12 @@ App.propTypes = {
   cat: React.PropTypes.number.isRequired
 }
 
+App.defaultProps = {
+  txt: 'Fun YO mama'
+}
+
 ReactDOM.render(
-  <App txt="this is props text"/>,
+  <App cat={69}/>,
   document.getElementById('app')
 );
 export default App;
