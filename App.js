@@ -5,28 +5,27 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      txt: 'Your Default State value'
+      red: 0,
+      green: 10,
+      blue: 100
     }
     this.update = this.update.bind(this);
   }
 
   update(e) {
     this.setState({
-      txt: e.target.value
+      red: ReactDOM.findDOMNode(this.refs.red.refs.inp).value,
+      green: ReactDOM.findDOMNode(this.refs.green.refs.inp).value,
+      blue: ReactDOM.findDOMNode(this.refs.blue.refs.inp).value
     });
   }
 
   render() {
     return (
       <div>
-        <h1>{this.state.txt}</h1>
-        <hr/>
-        <Slide update={this.update}/>
-        <Slide update={this.update}/>
-        <Slide update={this.update}/>
-        <Slide update={this.update}/>
-        <Slide update={this.update}/>
-        <Slide update={this.update}/>
+        <Slide ref="red" update={this.update}/> {this.state.red} <br/>
+        <Slide ref="green" update={this.update}/> {this.state.green} <br/>
+        <Slide ref="blue" update={this.update}/> {this.state.blue} <br/>
       </div>
     );
   }
@@ -37,10 +36,11 @@ class Slide extends React.Component {
     return (
       <div>
         <input
-        type='range'
-        min='0'
-        max='255'
-        onChange={this.props.update} />
+          ref='inp'
+          type='range'
+          min='0'
+          max='255'
+          onChange={this.props.update} />
       </div>
     );
   }
