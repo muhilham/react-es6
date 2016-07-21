@@ -1,28 +1,31 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      txt: 'Your Default State value'
+    }
+  }
+
+  update(e) {
+    this.setState({
+      txt: e.target.value
+    });
+  }
+
   render() {
-    let txt = this.props.txt;
     return (
       <div>
-        <h1>Hello world</h1>
-        <b>{txt}</b>
+        <input type='text'
+        onChange={this.update.bind(this)} />
+        <h1> {this.state.txt}</h1>
       </div>
     );
   }
 }
 
-App.propTypes = {
-  txt: React.PropTypes.string,
-  cat: React.PropTypes.number.isRequired
-}
 
-App.defaultProps = {
-  txt: 'Fun YO mama'
-}
-
-ReactDOM.render(
-  <App cat={69}/>,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById('app'));
 export default App;
