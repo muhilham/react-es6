@@ -15,8 +15,11 @@ class App extends React.Component {
       val: this.state.val +1
     });
   }
-
+  componentWillMount() {
+    console.log('this only trigger once before render');
+  }
   render() {
+    console.log('this will always keep firing');
     return (
       <button onClick={this.update}>{this.state.val}</button>
     );
