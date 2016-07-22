@@ -24,6 +24,9 @@ class App extends React.Component {
       <button onClick={this.update}>{this.state.val}</button>
     );
   }
+  componentDidMount() {
+    console.log('this only trigger once after rendering');
+  }
 }
 
 ReactDOM.render(
