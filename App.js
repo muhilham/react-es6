@@ -2,17 +2,17 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 
 let MixinApp = InnerComponent => class extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.update = this.update.bind(this);
     this.state = {
-      val: 1
+      currentValue: parseInt(props.val)
     };
   }
 
   update() {
     this.setState({
-      val: this.state.val + 1
+      currentValue: this.state.currentValue + 1
     });
   }
 
@@ -41,7 +41,7 @@ let MixinApp = InnerComponent => class extends React.Component {
 
 const Button = (props) => {
   return (
-    <button onClick={props.update}> {props.txt} - {props.val} </button>
+    <button onClick={props.update}> {props.txt} - {props.currentValue} </button>
   );
 }
 
@@ -51,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ButtonMixed txt= 'Button'/>
+        <ButtonMixed txt= 'Button' val={10} />
       </div>
     );
   }
