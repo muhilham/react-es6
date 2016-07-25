@@ -27,6 +27,10 @@ class App extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.val % 5 === 0;
+  }
+
   render() {
     console.log({
       now: this.state.currentProps,
