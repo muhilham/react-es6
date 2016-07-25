@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-class App extends React.Component {
+let MixinApp = InnerComponent => class extends React.Component {
   constructor() {
     super();
     this.update = this.update.bind(this);
@@ -16,18 +16,46 @@ class App extends React.Component {
     });
   }
 
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
   render() {
+    /**
+     * Read this
+     * https://facebook.github.io/react/docs/jsx-spread.html
+     * for this stupid spread Operators shit
+     */
     return (
-      <button onClick={this.update}>
-        {this.props.txt} - {this.state.val}
-      </button>
+      <InnerComponent update={this.update}
+        {...this.state}
+        {...this.props}
+       />
     );
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
   }
 }
 
-App.defaultProps = {
-  txt: 'Button'
-};
+const Button = (props) => {
+  return (
+    <button onClick={props.update}> {props.txt} - {props.val} </button>
+  );
+}
+
+let ButtonMixed = MixinApp(Button);
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <ButtonMixed txt= 'Button'/>
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
   <App/>,
