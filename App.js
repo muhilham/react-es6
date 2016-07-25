@@ -22,12 +22,6 @@ class App extends React.Component {
     );
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate');
-    let isRendered = nextProps.val % 5 === 0;
-    return isRendered;
-  }
-  
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps');
     this.setState({
@@ -35,6 +29,19 @@ class App extends React.Component {
       currentProps: this.props.val,
       nextProps: nextProps.val,
       isRendered: nextProps.val % 5 === 0
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate');
+    let isRendered = nextProps.val % 5 === 0;
+    return isRendered;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate', {
+      prevProps: prevProps.val,
+      prevState: prevState
     });
   }
 
