@@ -45,13 +45,21 @@ const Button = (props) => {
   );
 }
 
+const Label = (props) => {
+  return (
+    <label onMouseMove={props.update}> {props.txt} - {props.currentValue} </label>
+  );
+}
+
 let ButtonMixed = MixinApp(Button);
+let LabelMixed = MixinApp(Label);
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <ButtonMixed txt= 'Button' val={10} />
+        <ButtonMixed txt= 'Button' val={10} /> - 
+        <LabelMixed txt= 'Label' val={10} />
       </div>
     );
   }
