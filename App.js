@@ -58,8 +58,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ButtonMixed txt= 'Button' val={10} /> - 
-        <LabelMixed txt= 'Label' val={10} />
+        <ButtonMixed txt= 'Button' val={10} /> -
+        <LabelMixed txt= 'Label' val={9} />
       </div>
     );
   }
