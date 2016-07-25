@@ -1,28 +1,36 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
+
 class App extends React.Component {
+  constructor() {
+    super();
+    this.update = this.update.bind(this);
+    this.state = {
+      val: 1
+    };
+  }
+
+  update() {
+    this.setState({
+      val: this.state.val + 1
+    });
+  }
+
   render() {
-    let txt = this.props.txt;
     return (
-      <div>
-        <h1>Hello world</h1>
-        <b>{txt}</b>
-      </div>
+      <button onClick={this.update}>
+        {this.props.txt} - {this.state.val}
+      </button>
     );
   }
 }
 
-App.propTypes = {
-  txt: React.PropTypes.string,
-  cat: React.PropTypes.number.isRequired
-}
-
 App.defaultProps = {
-  txt: 'Fun YO mama'
-}
+  txt: 'Button'
+};
 
 ReactDOM.render(
-  <App cat={69}/>,
+  <App/>,
   document.getElementById('app')
 );
 export default App;
